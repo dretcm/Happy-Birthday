@@ -123,6 +123,7 @@
           timerTotal = 80,
           timerTick = 0,
           mousedown = false,
+          finger = false,
           // mouse x coordinate,
           mx,
           // mouse y coordinate
@@ -327,7 +328,7 @@
         
         // launch fireworks automatically to random coordinates, when the mouse isn't down
         if( timerTick >= timerTotal ) {
-          if( !mousedown ) {
+          if( !mousedown) {
             // start the firework at the bottom middle of the screen, then set the random target coordinates, the random y coordinates will be set within the range of the top half of the screen
             fireworks.push( new Firework( cw / 2, ch, random( 0, cw ), random( 0, ch / 2 ) ) );
             timerTick = 0;
@@ -338,7 +339,7 @@
         
         // limit the rate at which fireworks get launched when mouse is down
         if( limiterTick >= limiterTotal ) {
-          if( mousedown ) {
+          if( mousedown || finger) {
             // start the firework at the bottom middle of the screen, then set the current mouse coordinates as the target
             fireworks.push( new Firework( cw / 2, ch, mx, my ) );
             limiterTick = 0;
@@ -347,6 +348,8 @@
           limiterTick++;
         }
       }
+
+
 
       // mouse event bindings
       // update the mouse coordinates on mousemove
@@ -364,6 +367,21 @@
       canvas.addEventListener( 'mouseup', function( e ) {
         e.preventDefault();
         mousedown = false;
+      });
+
+      canvas.addEventListener( 'touchmove', function( e ) {
+        mx = e.pageX - canvas.offsetLeft;
+        my = e.pageY - canvas.offsetTop;
+      });
+
+      canvas.addEventListener( 'touchstart', function( e ) {
+        e.preventDefault();
+        finger = true;
+      });
+
+      canvas.addEventListener( 'touchend', function( e ) {
+        e.preventDefault();
+        finger = false;
       });
 
       // once the window loads, we are ready for some fireworks!
