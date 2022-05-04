@@ -1,22 +1,35 @@
+<!DOCTYPE html>
 <html>
-      <head>
-	      <center>
-		      <h1><u><font size=64 face="impact" color="white"> Holi XD </font></u></h1> 
-	      </center>
-	      <title> FC ♥ </title>
-      </head>
+  <head>
+    <style type="text/css">
+      #btn{
+        position: absolute;
+      }
+    </style>
 
-	<body style = "background-color:#009ad5;" text="white">
+    <script type="text/javascript">
+      let index = 0;
+      const arr = ["Te quiero :3", "Me encantas :3", "Te amo <3"]
+      
+      document.addEventListener('DOMContentLoaded', ()=> {
 
-	<center>
-		<font size=42 face="arial">ammm aaah!!! XD</font>
-		<br>
-		<img src = "https://i.pinimg.com/originals/3e/c8/89/3ec889aa31e793cf94f3f7cc30646757.gif">
-		<br>
-		<font size=42 face="arial"> Te quiero mi opresora ✨❤️✨ de parte d Papasote 🥵 XDDD</font>
-		<br>
-		<img src = "https://c.tenor.com/mLX-FZRN_IkAAAAC/amor.gif">
-			
-	</center>
+        btn = document.querySelector('#btn');
+        btn.onclick = () => {
+          btn.value = arr[index];
+
+          if (index < arr.length - 1) index++;
+          else index = 0;
+
+          btn.style.top = Math.floor(Math.random()*100 - btn.height)+'%';
+          btn.style.left = Math.floor(Math.random()*100 - btn.width)+'%';
+        }
+      })
+    </script>
+
+  </head>
+
+<body>
+      <input type="button" id="btn" value="holi :3">
 </body>
+
 </html>
