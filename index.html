@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <style type="text/css">
+      #box_div{
+        width: 100vw; height: 100vh; margin: 0; padding: 0;
+      }
       #btn{
-        position: absolute;
+        position: absolute; box-sizing: content-box;
+        width: 20vw; height: 20vh;
+        font-size: 100%; font-family: Arial; font-weight : bold;
       }
     </style>
 
@@ -14,14 +20,26 @@
       document.addEventListener('DOMContentLoaded', ()=> {
 
         btn = document.querySelector('#btn');
+
         btn.onclick = () => {
           btn.value = arr[index];
 
           if (index < arr.length - 1) index++;
           else index = 0;
 
-          btn.style.top = Math.floor(Math.random()*100 - btn.height)+'%';
-          btn.style.left = Math.floor(Math.random()*100 - btn.width)+'%';
+          let i=0,j=0, h = window.innerHeight-15, w=window.innerWidth-21;
+          do{
+            i = btn.style.top = Math.floor(Math.random()*h - (btn.offsetHeight));
+          }while(i>h || i <0);
+
+          do{
+            j = btn.style.left = Math.floor(Math.random()*w - (btn.offsetWidth));
+          }while(j>w || j<0);
+
+          btn.style.top = i +'px';
+          btn.style.left = j +'px';
+
+          //console.log(i, j, btn.offsetHeight)
         }
       })
     </script>
@@ -29,7 +47,7 @@
   </head>
 
 <body>
-      <input type="button" id="btn" value="holi :3">
+    <input type="button" id="btn" value="holi :3">
 </body>
 
 </html>
